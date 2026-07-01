@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hunt Words!</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+    <div class="profile-page">
+        <a href="{{ url_for('home') }}">
+            <button class="back-to-home">Back to Home</button>
+        </a>
+
+        <h1 class="profile-header">{{ user.username }}'s profile</h1>
+
+        <div class="stats-container">
+            <h2 class="profile-header">Stats</h2>
+            <h3>General Stats</h3>
+            <ul>
+                <li>
+                    Date Joined: {{user.joinDate.strftime("%B %d, %Y")}}
+                </li>
+            </ul>
+            <h3>Single Player Stats</h3>
+            <ul>
+                <li>
+                    Times Played: {{user.timesSingle}}
+                </li>
+                <li>
+                    Longest Streak: {{user.globallongest_streak}}
+                </li>
+                <li>
+                    Highest Score: {{user.globalhighest_score}}
+                </li>
+                <li>
+                    Most Words Found: {{user.globalmost_words_found}}
+                </li>
+            </ul>
+            <h3>Daily Puzzle Stats</h3>
+            <ul>
+                <li>
+                    Times Played:{{user.timesDaily}}
+                </li>
+                <li>
+                    Longest Streak: {{user.dailylongest_streak}}
+                </li>
+                <li>
+                    Highest Score: {{user.dailyhighest_score}}
+                </li>
+                <li>
+                    Most Words Found: {{user.dailymost_words_found}}
+                </li>
+            </ul>
+        </div>
+    </div>
+</body>
+
+
+</html>

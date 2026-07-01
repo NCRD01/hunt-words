@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hunt Words!</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+    <h3>Daily Challenge</h3>
+
+    {% if locked %}
+
+        <div class="locked-screen">
+            <h1>You've already completed today's puzzle</h1>
+            <p>Come back tomorrow for a new challenge!</p>
+
+            <a href="{{ url_for('home') }}">
+                <button>Back to Home</button>
+            </a>
+        </div>
+
+    {% else %}
+
+    <a href="{{ url_for('home') }}">
+        <button class="back-to-home">Back to Home</button>
+    </a>
+
+    <div class="game-container">
+        <header class="game-header">
+            <div>
+                <h2>Time Remaining</h2>
+                <h1 id="timer">01:30</h1>
+            </div>
+
+            <div>
+                <h2>Score</h2>
+                <h1 id="scoreDisplay">0</h1>
+            </div>
+             <div>
+                <h2>Streak</h2>
+                <h1 id="StreakDisplay">0</h1>
+            </div>
+        </header>
+
+        <main class="game-main">
+            <aside class="found-words-panel">
+                <h3>Found Words</h3>
+                <ul id="foundWords"></ul>
+            </aside>
+
+            <section class="game-area">
+                <p class="current-word">
+                    Current Word: <span id="currentWord"></span>
+                </p>
+
+                <p id="wordMessage"></p>
+
+                <div id="board" data-game-type="{{ game_type }}">
+                    {% for letter in board_letters %}
+                        <div class="tile" data-index="{{ loop.index0 }}">{{ letter }}</div>
+                    {% endfor %}
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <div id="gameOverModal" class="modal hidden">
+        <div class="modal-content">
+            <h1>🎉 Game Over!</h1>
+
+            <p>Final Score</p>
+            <h2 id="finalScore">0</h2>
+
+            <p>Words Found</p>
+            <h2 id="finalWords">0</h2>
+
+                 <p>Streak</p>
+            <h2 id="finalStreak">0</h2>
+
+            <div class="modal-buttons">
+                <a href="{{ url_for('daily_puzzle') }}">
+                    <button>Play Agaim</button>
+                </a>
+
+                <a href="{{ url_for('home') }}">
+                    <button>Home</button>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+    {% endif %}
+</body>
+</html>
