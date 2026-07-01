@@ -431,33 +431,63 @@ body::after {
 }
 
 /* Leaderboard */
-.big-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    gap: 30px;
-    margin: 35px;
-    flex-wrap: wrap;
+.big-container{
+    display:flex;
+    justify-content:center;
+    gap:45px;
+    flex-wrap:wrap;
+
+    margin:90px auto 40px;
 }
 
 .leader-container {
-    width: 45%;
-    min-width: 360px;
-    padding: 30px;
-    background: rgba(255, 255, 255, 0.88);
-    border-radius: 24px;
-    box-shadow: 0 18px 40px rgba(0, 0, 80, 0.15);
+    width: 46%;
+    min-width: 420px;
+    padding: 35px;
+    background: rgba(255, 255, 255, 0.92);
+    border-radius: 30px;
+    box-shadow: 0 24px 55px rgba(0, 0, 80, 0.18);
+    border: 2px solid rgba(5, 12, 70, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.leader-container::before {
+    content: "🏆";
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #ffd54a, #ff9f1c);
+    color: #071344;
+    font-size: 34px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 18px;
+    box-shadow: 0 14px 30px rgba(255, 153, 0, 0.28);
+}
+
+.leader-container:nth-child(2)::before {
+    content: "🌟";
+    background: linear-gradient(135deg, #8b3dff, #4217c9);
+    color: white;
 }
 
 .leader-container h1 {
     text-align: center;
     color: #070b3d;
+    font-size: 38px;
+    font-weight: 900;
+    margin-top: 0;
+    margin-bottom: 28px;
 }
 
 .leader-table {
-    border: 2px solid rgb(0, 0, 58);
-    border-radius: 16px;
+    border: 2px solid #070b3d;
+    border-radius: 20px;
     overflow: hidden;
+    background: white;
+    box-shadow: 0 12px 26px rgba(0, 0, 80, 0.08);
 }
 
 .leader-table table {
@@ -466,17 +496,57 @@ body::after {
 }
 
 .leader-table thead {
-    background-color: #84adff;
+    background: linear-gradient(135deg, #84adff, #6d91f5);
 }
 
-.leader-table th,
-.leader-table td {
-    padding: 18px;
+.leader-table th {
+    padding: 20px 16px;
     text-align: center;
+    color: #070b3d;
+    font-size: 18px;
+    font-weight: 900;
+}
+
+.leader-table td {
+    padding: 18px 16px;
+    text-align: center;
+    color: #070b3d;
+    font-size: 17px;
+    font-weight: 700;
+}
+
+.leader-table tbody tr {
+    transition: 0.2s ease;
 }
 
 .leader-table tbody tr:nth-child(even) {
     background-color: #eef4ff;
+}
+
+.leader-table tbody tr:hover {
+    background: #dce7ff;
+    transform: scale(1.01);
+}
+
+/* First row winner highlight */
+.leader-table tbody tr:first-child {
+    background: linear-gradient(135deg, #fff4c2, #fffaf0);
+}
+
+.leader-table tbody tr:first-child td:first-child::before {
+    content: "👑 ";
+}
+
+/* Leaderboard only */
+.leaderboard-nav{
+    width:100%;
+    max-width:1700px;
+    margin:25px auto 10px auto;
+    padding:0 40px;
+}
+
+.leaderboard-nav .back-button{
+    position:static;
 }
 
 /* Game */
