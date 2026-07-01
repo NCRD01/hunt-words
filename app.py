@@ -6,6 +6,7 @@ from extensions import db, bcrypt
 from models import User, GameResult
 from game_engine import generate_board, get_daily_seed
 from word_utils import check_word_status
+import re
 
 app = Flask(__name__)
 
@@ -20,6 +21,25 @@ login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = "index"
 
+def validate_username(username):
+    if len(username) < 3 or len(username) > 20:
+        return False
+    if not re.match(r"^[A-Za-z0-9_]+$", username):
+        return False
+    return True
+
+def validate_password(password):
+    if len(password) < 8:
+        return False
+    if not re.search(r"[A-Z]", password):
+        return False
+    if not re.search(r"[a-z]", password):
+        return False
+    if not re.search(r"[0-9]", password):
+        return False
+    if not re.search(r"[!@#$%^&*(),.?\":{}|<>]", password):
+        return False
+    return True
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -42,7 +62,7 @@ def login():
         login_user(user)
         return redirect("/home")
 
-    return redirect("/")
+    return render_template("login.html", invalidLogin=True)
 
 
 @app.route("/register", methods=["POST"])
@@ -51,7 +71,13 @@ def register():
     password = request.form["password"]
 
     if User.query.filter_by(username=username).first():
-        return redirect("/")
+        return render_template("login.html", usernameTaken=True)
+
+    if not validate_username(username):
+        return render_template("login.html", invalidUsername=True)
+
+    if not validate_password(password):
+        return render_template("login.html", invalidPassword=True)
 
     hashed_pw = bcrypt.generate_password_hash(password).decode("utf-8")
 

@@ -97,6 +97,12 @@ body{
     color: rgb(0, 0, 62);
 }
 
+.error-message {
+    color: red;
+    font-size: 12px;
+    text-align: center;
+}
+
 /*Home Page*/
 .home-page {
     display: flex;

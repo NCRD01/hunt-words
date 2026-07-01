@@ -21,6 +21,9 @@
                 <input type="text" name="username" placeholder="Username" required>
                 <input type="password" name="password" placeholder="Password" required>
                 <button type="submit">Login</button>
+                {% if invalidLogin %}
+                    <p class="error-message">Invalid username or password. Please try again.</p>
+                {% endif %}
             </form>
         </div>
 
@@ -31,6 +34,15 @@
                 <input type="text" name="username" placeholder="Username" required>
                 <input type="password" name="password" placeholder="Password" required>
                 <button type="submit">Register</button>
+                {% if usernameTaken %}
+                    <p class="error-message">Username already taken. Try again with a new one.</p>
+                {% endif %}
+                {% if invalidUsername %}
+                    <p class="error-message">Username must be between 3 and 20 characters long and can only contain letters, numbers, and underscores.</p>
+                {% endif %}
+                {% if invalidPassword %}
+                    <p class="error-message">Password must be at least 8 characters long and include uppercase, lowercase, number, and special character.</p>
+                {% endif %}
             </form>
         </div>
     </div>
