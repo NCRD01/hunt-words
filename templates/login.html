@@ -3,6 +3,7 @@
 <head>
     <title>Hunt Words!</title>
     <link rel="stylesheet" href="/static/style.css">
+    <link rel="icon" href="/static/favicon.ico" type="image/x-icon">
 </head>
 
 <body>
@@ -17,9 +18,12 @@
             <h2 class="card-head">Log In</h2>
 
             <form action="{{ url_for('login') }}" method="POST">
-                <input type="text" name="username" placeholder="Username" required>
-                <input type="password" name="password" placeholder="Password" required>
+                <input type="text" name="username" placeholder="Username" autocomplete="off" required>
+                <input type="password" name="password" placeholder="Password" autocomplete="off" required>
                 <button type="submit">Login</button>
+                {% if invalidLogin %}
+                    <p class="error-message">Invalid username or password. Please try again.</p>
+                {% endif %}
             </form>
         </div>
 
@@ -27,9 +31,18 @@
             <h2 class="card-head">Register New Account</h2>
 
             <form action="{{ url_for('register') }}" method="POST">
-                <input type="text" name="username" placeholder="Username" required>
-                <input type="password" name="password" placeholder="Password" required>
+                <input type="text" name="username" placeholder="Username" autocomplete="off" required>
+                <input type="password" name="password" placeholder="Password" autocomplete="off" required>
                 <button type="submit">Register</button>
+                {% if usernameTaken %}
+                    <p class="error-message">Username already taken. Try again with a new one.</p>
+                {% endif %}
+                {% if invalidUsername %}
+                    <p class="error-message">Username must be between 3 and 20 characters long and can only contain letters, numbers, and underscores.</p>
+                {% endif %}
+                {% if invalidPassword %}
+                    <p class="error-message">Password must be at least 8 characters long and include uppercase, lowercase, number, and special character.</p>
+                {% endif %}
             </form>
         </div>
     </div>

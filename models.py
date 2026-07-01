@@ -10,11 +10,12 @@ class User(UserMixin, db.Model):
     password = db.Column(db.String(255), nullable=False)
     joinDate = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
 
+    timesSingle = db.Column(db.Integer, default=0)
     globalhighest_score = db.Column(db.Integer, default=0)
     globallongest_streak = db.Column(db.Integer, default=0)
     globalmost_words_found = db.Column(db.Integer, default=0)
 
-    
+    timesDaily = db.Column(db.Integer, default=0)
     dailyhighest_score = db.Column(db.Integer, default=0)
     dailylongest_streak = db.Column(db.Integer, default=0)
     dailymost_words_found = db.Column(db.Integer, default=0)
