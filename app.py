@@ -197,25 +197,21 @@ def save_game():
 
     db.session.add(game_result)
 
-<<<<<<< HEAD
     if game_type == "single":
         current_user.globalhighest_score = max(current_user.globalhighest_score, score)
         current_user.globalmost_words_found = max(current_user.globalmost_words_found, words_found)
         current_user.globallongest_streak = max(current_user.globallongest_streak, longest_streak)
-=======
+
     if(game_type == "single"):
         current_user.timesSingle += 1
         if score > current_user.globalhighest_score:
             current_user.globalhighest_score = score
->>>>>>> 8dccc7b5ab5663f00b2f0edbbc7e8628ac83e8a2
 
     if game_type == "daily":
         current_user.dailyhighest_score = max(current_user.dailyhighest_score, score)
         current_user.dailymost_words_found = max(current_user.dailymost_words_found, words_found)
         current_user.dailylongest_streak = max(current_user.dailylongest_streak, longest_streak)
 
-<<<<<<< HEAD
-=======
         if longest_streak > current_user.globallongest_streak:
             current_user.globallongest_streak = longest_streak
 
@@ -230,7 +226,6 @@ def save_game():
         if longest_streak > current_user.dailylongest_streak:
             current_user.dailylongest_streak = longest_streak
         
->>>>>>> 8dccc7b5ab5663f00b2f0edbbc7e8628ac83e8a2
     db.session.commit()
 
     return jsonify({
