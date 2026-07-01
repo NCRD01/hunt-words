@@ -166,6 +166,7 @@ def save_game():
     db.session.add(game_result)
 
     if(game_type == "single"):
+        current_user.timesSingle += 1
         if score > current_user.globalhighest_score:
             current_user.globalhighest_score = score
 
@@ -176,6 +177,7 @@ def save_game():
             current_user.globallongest_streak = longest_streak
 
     if (game_type == "daily"):
+        current_user.timesDaily += 1
         if score > current_user.dailyhighest_score:
             current_user.dailyhighest_score = score
 
