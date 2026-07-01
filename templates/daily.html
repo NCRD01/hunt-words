@@ -15,16 +15,16 @@
             <h1>You've already completed today's puzzle</h1>
             <p>Come back tomorrow for a new challenge!</p>
 
-            <a href="{{ url_for('home') }}">
-                <button>Back to Home</button>
-            </a>
+            <a href="{{ url_for('home') }}" class="back-button">
+    ← Back to Home
+</a>
         </div>
 
     {% else %}
 
-    <a href="{{ url_for('home') }}">
-        <button class="back-to-home">Back to Home</button>
-    </a>
+    <a href="{{ url_for('home') }}" class="back-button">
+    ← Back to Home
+</a>
 
     <div class="game-container">
         <header class="game-header">
