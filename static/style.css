@@ -270,23 +270,43 @@ body::after {
 .home-page {
     display: flex;
     justify-content: center;
-    margin-top: 25px;
+    align-items: center;
+    margin-top: 35px;
 }
 
 .home-menu {
+    width: 430px;
+    min-height: 520px;
+    padding: 45px 38px;
+    border-radius: 32px;
+    background: rgba(255, 255, 255, 0.92);
+    border: 2px solid rgba(5, 12, 70, 0.12);
+    box-shadow: 0 24px 55px rgba(0, 0, 80, 0.18);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.home-menu::before {
+    content: "🎮";
+    width: 82px;
+    height: 82px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #174cff, #7a39ff);
+    color: white;
+    font-size: 38px;
     display: flex;
     justify-content: center;
-    flex-direction: column;
     align-items: center;
-    background: linear-gradient(135deg, rgb(93, 136, 255), rgb(63, 96, 213));
-    color: white;
-    border: 2px solid rgb(0, 0, 58);
-    border-radius: 24px;
-    width: 32%;
-    min-width: 340px;
-    padding: 30px;
-    font-size: 22px;
-    box-shadow: 0 18px 40px rgba(0, 0, 80, 0.2);
+    margin: 0 auto 18px;
+    box-shadow: 0 14px 30px rgba(0, 0, 90, 0.25);
+}
+
+.home-menu p {
+    color: #070b3d;
+    font-size: 30px;
+    font-weight: 900;
+    margin-bottom: 28px;
 }
 
 .home-menu div {
@@ -299,15 +319,39 @@ body::after {
 
 .home-menu button {
     width: 100%;
-    padding: 13px;
-    margin-bottom: 15px;
-    background-color: rgb(31, 75, 163);
-    border: 1px solid rgba(255, 255, 255, 0.45);
-    border-radius: 14px;
+    padding: 15px;
+    margin-bottom: 16px;
+    border: none;
+    border-radius: 18px;
     color: white;
     cursor: pointer;
     font-size: 18px;
+    font-weight: 700;
+    background: linear-gradient(135deg, #174cff, #0b2ba8);
+    box-shadow: 0 10px 22px rgba(0, 0, 90, 0.14);
     transition: 0.25s ease;
+}
+
+.home-menu a:nth-child(2) button {
+    background: linear-gradient(135deg, #8b3dff, #4217c9);
+}
+
+.home-menu a:nth-child(3) button {
+    background: linear-gradient(135deg, #2f9cff, #1956c7);
+}
+
+.home-menu a:nth-child(4) button {
+    background: linear-gradient(135deg, #f48dff, #be16d1);
+    color: #ffffff;
+}
+
+.home-menu a:nth-child(5) button {
+    background: linear-gradient(135deg, #071344, #0d1f67);
+}
+
+.home-menu button:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 16px 30px rgba(0, 0, 90, 0.22);
 }
 
 /* Profile Page */
