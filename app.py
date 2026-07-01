@@ -54,7 +54,6 @@ def register():
         return redirect("/")
 
     hashed_pw = bcrypt.generate_password_hash(password).decode("utf-8")
-
     user = User(username=username, password=hashed_pw)
 
     db.session.add(user)
@@ -85,8 +84,10 @@ def game():
     return render_template(
         "game.html",
         board_letters=board_letters,
-        game_type="single"
+        game_type="single",
+        locked=False
     )
+
 
 @app.route("/daily-puzzle")
 @login_required
@@ -101,8 +102,8 @@ def daily_puzzle():
 
     if already_played:
         return render_template(
-            "game.html",
-            board_letters=[],   # or None
+            "daily.html",
+            board_letters=[],
             game_type="daily",
             locked=True,
             final_score=already_played.score,
@@ -113,11 +114,15 @@ def daily_puzzle():
     board_letters = generate_board(seed)
 
     return render_template(
-        "game.html",
+        "daily.html",
         board_letters=board_letters,
         game_type="daily",
-        locked=False
+        locked=False,
+        final_score=0,
+        final_words=0,
+        final_streak=0
     )
+
 
 @app.route("/check-word", methods=["POST"])
 @login_required
@@ -138,53 +143,44 @@ def save_game():
     longest_streak = data.get("longest_streak", 0)
     game_type = data.get("game_type", "single")
 
-    
+    daily_seed = None
+
     if game_type == "daily":
-        seed = get_daily_seed()
+        daily_seed = get_daily_seed()
 
         existing = GameResult.query.filter_by(
             user_id=current_user.id,
             game_type="daily",
-            daily_seed=seed
+            daily_seed=daily_seed
         ).first()
 
         if existing:
             return jsonify({
                 "success": False,
-                "message": "Already completed today"
+                "message": "Already completed today's daily puzzle."
             }), 403
-        
+
     game_result = GameResult(
         user_id=current_user.id,
         score=score,
-        longest_streak=longest_streak,
         words_found=words_found,
+        longest_streak=longest_streak,
         game_type=game_type,
-        daily_seed=get_daily_seed() if game_type == "daily" else None
+        daily_seed=daily_seed
     )
 
     db.session.add(game_result)
 
-    if(game_type == "single"):
-        if score > current_user.globalhighest_score:
-            current_user.globalhighest_score = score
+    if game_type == "single":
+        current_user.globalhighest_score = max(current_user.globalhighest_score, score)
+        current_user.globalmost_words_found = max(current_user.globalmost_words_found, words_found)
+        current_user.globallongest_streak = max(current_user.globallongest_streak, longest_streak)
 
-        if words_found > current_user.globalmost_words_found:
-            current_user.globalmost_words_found = words_found
+    if game_type == "daily":
+        current_user.dailyhighest_score = max(current_user.dailyhighest_score, score)
+        current_user.dailymost_words_found = max(current_user.dailymost_words_found, words_found)
+        current_user.dailylongest_streak = max(current_user.dailylongest_streak, longest_streak)
 
-        if longest_streak > current_user.globallongest_streak:
-            current_user.globallongest_streak = longest_streak
-
-    if (game_type == "daily"):
-        if score > current_user.dailyhighest_score:
-            current_user.dailyhighest_score = score
-
-        if words_found > current_user.dailymost_words_found:
-            current_user.dailymost_words_found = words_found
-
-        if longest_streak > current_user.dailylongest_streak:
-            current_user.dailylongest_streak = longest_streak
-        
     db.session.commit()
 
     return jsonify({
@@ -199,11 +195,16 @@ def profile():
     return render_template("profile.html", user=current_user)
 
 
+@app.route("/leaderboard")
+@login_required
+def leaderboard():
+    return render_template("leaderboard.html")
+
+
 @app.route("/leaderboard_data")
 @login_required
 def leaderboard_data():
-    
-    users = User.query.all()
+    users = User.query.order_by(User.globalhighest_score.desc()).all()
 
     return jsonify([
         {
@@ -215,11 +216,11 @@ def leaderboard_data():
         for user in users
     ])
 
+
 @app.route("/dailyleaderboard_data")
 @login_required
 def dailyleaderboard_data():
-    
-    users = User.query.all()
+    users = User.query.order_by(User.dailyhighest_score.desc()).all()
 
     return jsonify([
         {
@@ -231,10 +232,6 @@ def dailyleaderboard_data():
         for user in users
     ])
 
-@app.route("/leaderboard")
-@login_required
-def leaderboard():
-    return render_template("leaderboard.html")
 
 if __name__ == "__main__":
     with app.app_context():

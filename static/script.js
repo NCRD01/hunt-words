@@ -4,7 +4,7 @@ const currentWordDisplay = document.getElementById("currentWord");
 const foundWordsList = document.getElementById("foundWords");
 const timerDisplay = document.getElementById("timer");
 const scoreDisplay = document.getElementById("scoreDisplay");
-const StreakDisplay = document.getElementById("StreakDisplay")
+const StreakDisplay = document.getElementById("StreakDisplay");
 const wordMessage = document.getElementById("wordMessage");
 const gameOverModal = document.getElementById("gameOverModal");
 const finalScore = document.getElementById("finalScore");
@@ -26,6 +26,8 @@ let countdown;
 
 // Start game
 function startGame() {
+    if (!board) return;
+
     board.addEventListener("mousedown", startSelection);
     board.addEventListener("mouseover", continueSelection);
     document.addEventListener("mouseup", finishSelection);
@@ -101,15 +103,11 @@ function isAdjacent(tile1, tile2) {
 // Submit selected word
 async function submitWord() {
     if (foundWords.includes(currentWord)) {
-        resestStreak();
+        resetStreak();
         showMessage(`"${currentWord.toUpperCase()}" was already found.`, "invalid");
         resetSelection();
         return;
     }
-
- 
-
-    const selectedPath = [...selectedTiles];
 
     const response = await fetch("/check-word", {
         method: "POST",
@@ -125,10 +123,10 @@ async function submitWord() {
         foundWords.push(currentWord);
         addFoundWord(currentWord);
         updateScore(data.score);
-        updateStreak()
+        updateStreak();
         showMessage(data.message, "valid");
     } else {
-        resestStreak()
+        resetStreak();
         showMessage(data.message, "invalid");
     }
 
@@ -148,16 +146,19 @@ function updateScore(points) {
     scoreDisplay.textContent = score;
 }
 
+// Update streak
 function updateStreak() {
     streak++;
 
     if (streak > longestStreak) {
         longestStreak = streak;
     }
+
     StreakDisplay.textContent = streak;
 }
 
-function resestStreak(){
+// Reset streak
+function resetStreak() {
     streak = 0;
     StreakDisplay.textContent = streak;
 }
@@ -173,7 +174,7 @@ function showMessage(message, type) {
     }, 1500);
 }
 
-// Reset temporary selection only
+// Reset selected tiles
 function resetSelection() {
     currentWord = "";
     selectedTiles = [];
@@ -239,4 +240,3 @@ async function endGame() {
 }
 
 startGame();
-
