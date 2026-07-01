@@ -1,112 +1,121 @@
-body{
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: rgb(220, 231, 245);
+* {
+    box-sizing: border-box;
 }
 
-/*Title*/
-.title {
-    color: #000060;
-    background-color: #d8d8ff;
-    margin: 20px;
-    border: 2px solid #00003a;
-    border-radius: 4px;
-    width: 350px;
-    display: flex;
-    justify-content: center;
-    font-size: 24px;
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background:
+        radial-gradient(circle at top left, rgba(132, 173, 255, 0.45), transparent 35%),
+        linear-gradient(135deg, #dce7f5 0%, #eef4ff 100%);
+    color: #0a0f3c;
 }
 
+/* Title */
 .title-container {
     display: flex;
     justify-content: center;
+    padding-top: 30px;
 }
 
-/*Login Page*/
-.login-card {
-    border: 2px solid rgb(45, 45, 82);
-    border-radius: 4px;
-    width: 30%;
-    margin: 5px;
-    padding: 5px;
-    background-color: rgb(250, 253, 255);
-    margin-right: 50px;
-    padding-bottom: 40px;
+.title {
+    color: rgb(0, 0, 96);
+    background: rgba(255, 255, 255, 0.65);
+    border: 2px solid rgb(0, 0, 58);
+    border-radius: 18px;
+    width: 420px;
+    display: flex;
+    justify-content: center;
+    font-size: 24px;
+    box-shadow: 0 14px 30px rgba(0, 0, 80, 0.18);
 }
 
-.login-card input {
-    width: 90%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
+.title h1 {
+    margin: 28px 0;
 }
 
-.login-card button {
-    width: 100%;
-    padding: 10px;
-    margin-top: 0;
-    margin-bottom: 0;
-    background-color: rgb(62, 62, 255);
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 16px;
-}
-
-.register-card {
-    border: 2px solid rgb(45, 45, 82);
-    border-radius: 4px;
-    width: 30%;
-    margin: 5px;
-    padding: 5px;
-    background-color: rgb(249, 252, 255);
-    margin-left: 50px;
-    padding-bottom: 40px;
-}
-
-.register-card input {
-    width: 90%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-}
-
-.register-card button {
-    width: 100%;
-    padding: 10px;
-    margin-top: 0;
-    margin-bottom: 0;
-    background-color: rgb(62, 62, 255);
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 16px;
-}
-
+/* Login Page */
 .login-register-cards {
     display: flex;
     justify-content: center;
+    gap: 60px;
+    margin-top: 35px;
+    flex-wrap: wrap;
+}
+
+.login-card,
+.register-card {
+    border: 2px solid rgb(45, 45, 82);
+    border-radius: 18px;
+    width: 32%;
+    min-width: 320px;
+    padding: 25px;
+    background: rgba(255, 255, 255, 0.82);
+    box-shadow: 0 14px 30px rgba(0, 0, 80, 0.12);
+}
+
+.login-card input,
+.register-card input {
+    width: 100%;
+    padding: 14px;
+    margin-bottom: 16px;
+    border: 1px solid #c7cbe0;
+    border-radius: 12px;
+    font-size: 16px;
+    outline: none;
+}
+
+.login-card input:focus,
+.register-card input:focus {
+    border-color: rgb(62, 62, 255);
+    box-shadow: 0 0 0 3px rgba(62, 62, 255, 0.16);
+}
+
+.login-card button,
+.register-card button,
+.home-menu button,
+.back-to-home,
+.modal-buttons button,
+.locked-screen button {
+    transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+}
+
+.login-card button,
+.register-card button {
+    width: 100%;
+    padding: 13px;
+    background: linear-gradient(135deg, rgb(62, 62, 255), rgb(31, 75, 163));
+    color: white;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 17px;
+}
+
+.login-card button:hover,
+.register-card button:hover,
+.home-menu button:hover,
+.back-to-home:hover,
+.modal-buttons button:hover,
+.locked-screen button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0, 0, 80, 0.18);
 }
 
 .card-head {
-    display:flex;
+    display: flex;
     justify-content: center;
     color: rgb(0, 0, 62);
+    font-size: 30px;
+    margin-bottom: 22px;
 }
 
-.error-message {
-    color: red;
-    font-size: 12px;
-    text-align: center;
-}
-
-/*Home Page*/
+/* Home Page */
 .home-page {
     display: flex;
     justify-content: center;
+    margin-top: 25px;
 }
 
 .home-menu {
@@ -114,72 +123,103 @@ body{
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    background-color: rgb(93, 136, 255);
+    background: linear-gradient(135deg, rgb(93, 136, 255), rgb(63, 96, 213));
     color: white;
     border: 2px solid rgb(0, 0, 58);
-    border-radius: 8px;
-    width: 30%;
-    padding: 10px;
-    font-size: 20px;
+    border-radius: 20px;
+    width: 32%;
+    min-width: 340px;
+    padding: 28px;
+    font-size: 22px;
+    box-shadow: 0 16px 35px rgba(0, 0, 80, 0.18);
 }
 
+.home-menu div {
+    width: 100%;
+}
+
+.home-menu a {
+    text-decoration: none;
+}
 
 .home-menu button {
     width: 100%;
-    padding: 5px;
+    padding: 12px;
     margin-bottom: 15px;
     background-color: rgb(31, 75, 163);
-    border: 1px solid black;
-    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    border-radius: 12px;
     color: white;
     cursor: pointer;
     font-size: 18px;
 }
 
-/*Profile Page*/
+/* Profile Page */
+.profile-page {
+    padding: 25px;
+}
+
 .profile-header {
     display: flex;
     justify-content: center;
 }
 
 .stats-container {
-    width: 50%;
-    margin-left: 25%;
-    padding: 20px;
-    background-color: #84adff;
-    border-radius: 8px;
+    width: 55%;
+    min-width: 340px;
+    margin: 20px auto;
+    padding: 28px;
+    background: rgba(132, 173, 255, 0.82);
+    border-radius: 20px;
+    box-shadow: 0 14px 30px rgba(0, 0, 80, 0.14);
+}
+
+.stats-container h3 {
+    margin-top: 22px;
+}
+
+.stats-container li {
+    margin: 8px 0;
 }
 
 .back-to-home {
-    padding: 10px;
-    background-color: rgb(0, 0, 155);
+    padding: 11px 16px;
+    background: rgb(0, 0, 155);
     color: white;
     border: none;
-    border-radius: 8px;
+    border-radius: 12px;
     cursor: pointer;
-    font-size: 12px;
+    font-size: 14px;
+    margin: 18px;
 }
 
-/*leaderboard*/
+/* Leaderboard */
 .big-container {
     display: flex;
     flex-direction: row;
-    align-items: center;
     justify-content: space-around;
-    margin: 20px;
+    gap: 25px;
+    margin: 30px;
+    flex-wrap: wrap;
 }
+
 .leader-container {
-    width: 50%;
-    margin: 20px;
-    padding: 20px;
-    background-color: rgb(249, 252, 255);
-    border-radius: 8px;
+    width: 45%;
+    min-width: 360px;
+    padding: 25px;
+    background: rgba(255, 255, 255, 0.86);
+    border-radius: 20px;
+    box-shadow: 0 14px 30px rgba(0, 0, 80, 0.12);
+}
+
+.leader-container h1 {
+    text-align: center;
 }
 
 .leader-table {
     border: 2px solid rgb(0, 0, 58);
-    border-radius: 8px;
-    overflow: hidden; 
+    border-radius: 14px;
+    overflow: hidden;
 }
 
 .leader-table table {
@@ -193,10 +233,13 @@ body{
 
 .leader-table th,
 .leader-table td {
-    padding: 20px;
+    padding: 18px;
     text-align: center;
 }
 
+.leader-table tbody tr:nth-child(even) {
+    background-color: #eef4ff;
+}
 
 /* Game */
 .game-container {
@@ -204,126 +247,169 @@ body{
     padding: 25px;
 }
 
-.game-container main {
-    display: grid;
-    grid-template-columns: 250px 1fr;
-    gap: 40px;
-}
-
-.timer {
+.game-header {
     display: flex;
     justify-content: center;
-    flex-direction: column;
-    align-items: center;
+    gap: 60px;
+    margin-bottom: 20px;
 }
 
-.score-streak-container {
-    display: flex;
-    justify-content: center;
+.game-header > div {
+    background: rgba(255, 255, 255, 0.7);
+    padding: 18px 28px;
+    border-radius: 18px;
+    min-width: 170px;
+    text-align: center;
+    box-shadow: 0 10px 24px rgba(0, 0, 80, 0.1);
 }
 
-.score {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    padding: 0;
+.game-header h1,
+.game-header h2 {
     margin: 0;
-}
-
-.score h1, h2, h3{
-    margin: 0;
-    padding: 0;
-}
-
-.streak {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    padding-bottom: 0;
-    margin-bottom: 0;
-}
-
-.streak h1, h2, h3 {
-    margin: 0;
-    padding: 0;
 }
 
 .game-main {
-    display: flex;
-    justify-content: left;
-}
-
-.game-area {
-    width: 70%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    user-select: none;
-}
-
-.current-word{
-    padding: 0;
-    margin: 0;
-    margin-top: 10px;
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: 40px;
+    align-items: start;
 }
 
 .found-words-panel {
-    width: 50%;
+    background: rgba(255, 255, 255, 0.72);
+    border-radius: 20px;
+    padding: 22px;
+    min-height: 500px;
+    box-shadow: 0 12px 26px rgba(0, 0, 80, 0.12);
+}
+
+.score,
+.streak {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #eef4ff;
+    padding: 12px 15px;
+    border-radius: 14px;
+    margin-bottom: 12px;
+}
+
+.score h3,
+.streak h3 {
+    margin: 0;
+}
+
+#foundWords {
+    padding-left: 22px;
+}
+
+#foundWords li {
+    margin: 6px 0;
+    font-weight: 600;
+}
+
+.game-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    user-select: none;
+}
+
+.current-word {
+    margin-top: 18px;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+#currentWord {
+    color: rgb(62, 62, 255);
+    letter-spacing: 2px;
 }
 
 #board {
     display: grid;
-    grid-template-columns: repeat(4, 80px);
-    gap: 10px;
+    grid-template-columns: repeat(4, 90px);
+    gap: 12px;
     margin-top: 25px;
+    padding: 18px;
+    background: rgba(255, 255, 255, 0.45);
+    border-radius: 24px;
+    box-shadow: inset 0 0 0 2px rgba(0, 0, 80, 0.08);
 }
 
 .tile {
-    width: 80px;
-    height: 80px;
-    border: 2px solid black;
-    border-radius: 10px;
+    width: 90px;
+    height: 90px;
+    border: 2px solid rgb(0, 0, 58);
+    border-radius: 18px;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 2rem;
-    font-weight: bold;
+    font-size: 2.3rem;
+    font-weight: 800;
     cursor: pointer;
-    background-color: white;
+    background: linear-gradient(145deg, #ffffff, #edf3ff);
+    box-shadow: 0 8px 18px rgba(0, 0, 80, 0.12);
+    transition: transform 0.12s ease, background 0.12s ease, box-shadow 0.12s ease;
+}
+
+.tile:hover {
+    transform: translateY(-2px);
 }
 
 .tile.selected {
-    background-color: #7ea6ff;
+    background: linear-gradient(135deg, #5b7cff, #6cc7ff);
     color: white;
     transform: scale(1.08);
+    box-shadow: 0 12px 25px rgba(62, 62, 255, 0.3);
 }
 
 #wordMessage {
-    height: 24px;
+    height: 28px;
     margin: 8px 0 0 0;
     font-weight: bold;
     text-align: center;
 }
 
 .valid-message {
-    color: green;
+    color: #12803a;
 }
 
 .invalid-message {
-    color: red;
+    color: #c62828;
 }
 
+/* Daily Locked Screen */
+.locked-screen {
+    width: 50%;
+    min-width: 340px;
+    margin: 90px auto;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.86);
+    padding: 40px;
+    border-radius: 22px;
+    box-shadow: 0 16px 35px rgba(0, 0, 80, 0.16);
+}
+
+.locked-screen button {
+    padding: 12px 18px;
+    background: rgb(31, 75, 163);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+}
+
+/* Modal */
 .modal {
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 50, 0.65);
+    background: rgba(0, 0, 50, 0.68);
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 999;
+    backdrop-filter: blur(4px);
 }
 
 .hidden {
@@ -332,11 +418,12 @@ body{
 
 .modal-content {
     background: white;
-    padding: 35px;
-    width: 350px;
+    padding: 38px;
+    width: 380px;
     text-align: center;
-    border-radius: 18px;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+    border-radius: 24px;
+    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.25);
+    animation: popIn 0.22s ease;
 }
 
 .modal-content h1 {
@@ -345,7 +432,7 @@ body{
 
 .modal-content h2 {
     color: rgb(62, 62, 255);
-    font-size: 32px;
+    font-size: 34px;
     margin: 5px 0 15px;
 }
 
@@ -356,14 +443,59 @@ body{
 }
 
 .modal-buttons button {
-    padding: 10px 18px;
+    padding: 11px 20px;
     background-color: rgb(31, 75, 163);
     color: white;
     border: none;
-    border-radius: 8px;
+    border-radius: 12px;
     cursor: pointer;
 }
 
-.modal-buttons button:hover {
-    background-color: rgb(62, 62, 255);
+/* Animations */
+@keyframes popIn {
+    from {
+        opacity: 0;
+        transform: scale(0.92);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .login-register-cards,
+    .big-container,
+    .game-header {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .login-card,
+    .register-card,
+    .home-menu,
+    .leader-container,
+    .stats-container {
+        width: 88%;
+    }
+
+    .game-main {
+        grid-template-columns: 1fr;
+    }
+
+    .found-words-panel {
+        min-height: auto;
+    }
+
+    #board {
+        grid-template-columns: repeat(4, 70px);
+    }
+
+    .tile {
+        width: 70px;
+        height: 70px;
+        font-size: 1.8rem;
+    }
 }
