@@ -418,7 +418,7 @@ body::after {
     box-shadow: inset 0 0 0 1px rgba(5, 12, 70, 0.06);
 }
 
-/* Make date joined span cleanly */
+/* Date joined */
 .stats-container ul:first-of-type {
     grid-template-columns: 1fr;
 }
@@ -537,7 +537,7 @@ body::after {
     content: "👑 ";
 }
 
-/* Leaderboard only */
+/* Leaderboard only button*/
 .leaderboard-nav{
     width:100%;
     max-width:1700px;
@@ -720,16 +720,83 @@ body::after {
         0 18px 30px rgba(0, 94, 255, 0.32);
 }
 
+/* Daily Locked Screen */
+.locked-screen {
+    width: 55%;
+    max-width: 760px;
+    min-width: 340px;
+    margin: 120px auto;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.94);
+    padding: 55px 45px;
+    border-radius: 34px;
+    box-shadow: 0 28px 65px rgba(0, 0, 80, 0.2);
+    border: 2px solid rgba(5, 12, 70, 0.08);
+    position: relative;
+}
+
+.locked-screen::before {
+    content: "🏆";
+    width: 88px;
+    height: 88px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #ffd54a, #ff9f1c);
+    color: #071344;
+    font-size: 42px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: -95px auto 25px;
+    box-shadow: 0 16px 35px rgba(255, 153, 0, 0.3);
+}
+
+.locked-screen h1 {
+    font-size: 42px;
+    color: #070b3d;
+    margin-bottom: 18px;
+    line-height: 1.15;
+}
+
+.locked-screen p {
+    font-size: 20px;
+    color: #333a66;
+    margin-bottom: 28px;
+}
+
+.locked-screen a {
+    text-decoration: none;
+}
+
+.locked-screen button {
+    padding: 15px 28px;
+    background: linear-gradient(135deg, #174cff, #132b9d);
+    color: white;
+    border: none;
+    border-radius: 18px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 800;
+    box-shadow: 0 12px 25px rgba(0, 0, 90, 0.2);
+    transition: 0.25s ease;
+}
+
+.locked-screen button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 18px 35px rgba(0, 0, 90, 0.26);
+}
+
 /* Modal */
 .modal {
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 50, 0.68);
+    background:
+        radial-gradient(circle at center, rgba(90, 121, 255, 0.2), transparent 40%),
+        rgba(0, 0, 50, 0.72);
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 999;
-    backdrop-filter: blur(4px);
+    backdrop-filter: blur(5px);
 }
 
 .hidden {
@@ -737,38 +804,152 @@ body::after {
 }
 
 .modal-content {
-    background: white;
-    padding: 40px;
-    width: 390px;
+    background: rgba(255, 255, 255, 0.96);
+    padding: 48px 42px;
+    width: 430px;
     text-align: center;
-    border-radius: 26px;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.28);
-    animation: popIn 0.22s ease;
+    border-radius: 32px;
+    box-shadow: 0 28px 70px rgba(0, 0, 0, 0.3);
+    animation: popIn 0.25s ease;
+    border: 2px solid rgba(255, 255, 255, 0.35);
+    position: relative;
+}
+
+.modal-content::before {
+    content: "🎉";
+    width: 82px;
+    height: 82px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #ffd54a, #ff9f1c);
+    color: #071344;
+    font-size: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: -88px auto 20px;
+    box-shadow: 0 16px 35px rgba(255, 153, 0, 0.3);
 }
 
 .modal-content h1 {
-    color: rgb(0, 0, 96);
+    color: #070b3d;
+    font-size: 38px;
+    margin-bottom: 26px;
+}
+
+.modal-content p {
+    color: #4c5278;
+    font-size: 16px;
+    font-weight: 800;
+    margin-bottom: 4px;
 }
 
 .modal-content h2 {
-    color: rgb(62, 62, 255);
-    font-size: 36px;
-    margin: 5px 0 15px;
+    color: #174cff;
+    font-size: 38px;
+    margin: 0 0 18px;
 }
 
 .modal-buttons {
     display: flex;
     justify-content: center;
     gap: 15px;
+    margin-top: 24px;
+}
+
+.modal-buttons a {
+    text-decoration: none;
 }
 
 .modal-buttons button {
-    padding: 12px 22px;
-    background-color: rgb(31, 75, 163);
+    padding: 13px 24px;
+    background: linear-gradient(135deg, #174cff, #132b9d);
     color: white;
     border: none;
-    border-radius: 14px;
+    border-radius: 16px;
     cursor: pointer;
+    font-size: 16px;
+    font-weight: 800;
+    box-shadow: 0 12px 25px rgba(0, 0, 90, 0.18);
+    transition: 0.25s ease;
+}
+
+.modal-buttons button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 18px 30px rgba(0, 0, 90, 0.25);
+}
+
+.locked-card{
+
+    position:relative;
+
+    width:820px;
+    max-width:90%;
+
+    padding:90px 70px 60px;
+
+    background:white;
+
+    border-radius:35px;
+
+    box-shadow:0 20px 60px rgba(0,0,70,.15);
+
+    text-align:center;
+}
+
+.challenge-label{
+
+    display:inline-block;
+
+    padding:10px 24px;
+
+    margin-bottom:25px;
+
+    border-radius:999px;
+
+    background:linear-gradient(135deg,#1f5cff,#6e2dff);
+
+    color:white;
+
+    font-weight:700;
+
+    font-size:18px;
+
+    letter-spacing:1px;
+
+    text-transform:uppercase;
+
+    box-shadow:0 8px 20px rgba(0,0,80,.18);
+}
+
+.locked-card h1{
+
+    font-size:62px;
+
+    line-height:1.05;
+
+    margin-bottom:20px;
+
+    color:#10195f;
+}
+
+.locked-message{
+
+    font-size:28px;
+
+    font-weight:600;
+
+    color:#1b275e;
+
+    margin-bottom:15px;
+}
+
+.locked-subtitle{
+
+    font-size:22px;
+
+    color:#55608f;
+
+    margin-bottom:40px;
 }
 
 /* Animations */
